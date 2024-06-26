@@ -147,6 +147,18 @@ document.addEventListener('DOMContentLoaded', () => {
         // Socket.io event handlers
         socket.on('user-joined', (name) => {
             append(`${name} joined the chat`, 'left');
-     
+        });
 
-  
+        socket.on('receive', (data) => {
+            append(`${data.name}: ${data.message}`, 'left');
+        });
+
+        socket.on('left', (name) => {
+            append(`${name} left the chat`, 'left');
+        });
+    } else {
+        console.log("User did not enter a name.");
+        // Handle case where user cancels or doesn't enter a name
+        // You might want to display an error message or handle it differently
+    }
+});
